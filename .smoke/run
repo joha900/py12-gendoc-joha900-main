@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if ! command -v pip &> /dev/null; then
+    echo "pip could not be found"
+    exit 1
+fi
+
+if ! command -v pytest &> /dev/null; then
+    pip install pytest
+fi
+
+if ! command -v pytest &> /dev/null; then
+    echo "pytest could not be found or installed"
+    exit 1
+fi
+
+pytest -v "$SCRIPT_DIR"
